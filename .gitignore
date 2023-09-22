@@ -5,8 +5,19 @@ dist
 tmp
 /out-tsc
 
+#logs
+LOG
+log
+.LOG
+
 # dependencies
 node_modules
+
+#Sonar
+.scannerwork
+
+# Enviroment 
+.env
 
 # IDEs and editors
 /.idea

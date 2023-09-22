@@ -29,6 +29,20 @@
       }
     },
     {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {
+        "max-params": [
+          "error",
+          {
+            "max": 4
+          }
+        ],
+        "no-nested-ternary": "error",
+        "no-duplicate-imports": ["error"]
+      }
+    },
+    {
       "files": ["*.html"],
       "extends": ["plugin:@nx/angular-template"],
       "rules": {}
