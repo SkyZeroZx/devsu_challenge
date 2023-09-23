@@ -1,0 +1,30 @@
+li {
+	display: inline;
+}
+
+.custom-paginator {
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+}
+
+.page-item {
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&.active {
+		button {
+			background-color: #fae04f;
+		}
+	}
+	&:hover {
+		button {
+			background-color: #fae04f;
+		}
+	}
+}
+
+ul {
+	display: flex;
+}

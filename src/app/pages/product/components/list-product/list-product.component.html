@@ -24,7 +24,14 @@
 				</th>
 			</tr>
 
-			<tr *ngFor="let product of listProduct()">
+			<tr
+				*ngFor="
+					let product of listProduct()
+						| slice
+							: (pagination.currentPage - 1) * pagination.pageSize
+							: pagination.currentPage * pagination.pageSize
+				"
+			>
 				<td data-th="ID">
 					{{ product.id }}
 				</td>
@@ -56,4 +63,11 @@
 			</tr>
 		</tbody>
 	</table>
+	<app-pagination
+		#pagination
+		[pageSize]="10"
+		[collectionSize]="listProduct().length"
+		[maxSize]="2"
+		[firstLastButtons]="true"
+	/>
 </main>

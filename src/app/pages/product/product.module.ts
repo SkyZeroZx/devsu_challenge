@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductRoutingModule } from './product.routing';
 import { ConfirmDialogDirective } from '../../shared/directives/confirm-dialog/confirm-dialog.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
 
 @NgModule({
 	declarations: [ListProductComponent, CreateProductComponent, UpdateProductComponent],
@@ -12,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		ProductRoutingModule,
 		ConfirmDialogDirective,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		PaginationComponent
 	]
 })
 export class ProductModule {}

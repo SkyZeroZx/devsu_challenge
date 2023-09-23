@@ -24,5 +24,6 @@
 	cursor: pointer;
 	&::before {
 		content: url('/assets/svg/delete.svg');
+		filter: invert(40%) sepia(99%) saturate(518%) hue-rotate(322deg) brightness(88%) contrast(94%);
 	}
 }
