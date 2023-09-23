@@ -1,10 +1,9 @@
-import { debounceTime, distinctUntilChanged } from 'rxjs';
-
 import { Product } from '@/core/interface/product';
+import { filterSearch } from '@/core/utils/filter-search';
+import { FilterService } from '@/services/filter';
 import { ProductService } from '@/services/product';
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { FilterService } from '@/services/filter';
 
 @Component({
 	selector: 'app-list-product',
@@ -24,6 +23,7 @@ export class ListProductComponent implements OnInit {
 		'Fecha Restructuración',
 		'Acciones'
 	];
+	filterColumns: string[] = ['id', 'name', 'description'];
 
 	constructor(
 		private productService: ProductService,
@@ -46,12 +46,8 @@ export class ListProductComponent implements OnInit {
 	}
 
 	onChangeFilter() {
-		this.filter.valueChanges.pipe(debounceTime(200), distinctUntilChanged()).subscribe((filter) => {
-			const dataFilter = this.filterService.filterData<Product>(filter, [
-				'id',
-				'name',
-				'description'
-			]);
+		this.filter.valueChanges.pipe(filterSearch()).subscribe((filter) => {
+			const dataFilter = this.filterService.filterData<Product>(filter, this.filterColumns);
 			this.listProduct.set(dataFilter);
 		});
 	}
