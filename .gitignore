@@ -18,6 +18,7 @@ node_modules
 
 # Enviroment 
 .env
+.angular/*
 
 # IDEs and editors
 /.idea

@@ -1,6 +1,6 @@
 {
   "name": "devsu-challenge",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
@@ -8,12 +8,17 @@
     "lint-format": "npm run format &&  npm run lint --fix",
     "pre-commit": "npm run lint-format && git add .",
     "build": "nx build",
-    "test": "nx test",
-    "sonar": "sonar-scanner",
+    "test": "nx test --codeCoverage",
+    "sonarqube": "sonar-scanner",
     "lint": "nx run-many -t lint",
     "prepare": "husky install"
   },
   "private": true,
+  "jestSonar": {
+    "reportPath": "./coverage/devsu-challenge/report",
+    "reportFile": "sonar_report.xml",
+    "indent": 4
+  },
   "dependencies": {
     "@angular/animations": "~16.2.0",
     "@angular/common": "~16.2.0",
@@ -23,6 +28,7 @@
     "@angular/platform-browser": "~16.2.0",
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
+    "@angular/service-worker": "~16.2.0",
     "@nx/angular": "16.8.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -58,6 +64,7 @@
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
+    "jest-sonar-reporter": "^2.0.0",
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "16.8.1",
     "prettier": "^2.6.2",
