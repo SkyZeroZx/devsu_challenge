@@ -1,0 +1,23 @@
+footer {
+	font-size: 14px;
+	margin: 0;
+	min-width: 100%;
+	background-color: whitesmoke;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	align-items: center;
+
+	span {
+		color: #183a5c;
+		font-family: 'Quicksand';
+	}
+}
+
+.copyrights {
+	margin-top: 3rem;
+	color: black;
+	font-family: 'Quicksand';
+	font-weight: 500;
+}
