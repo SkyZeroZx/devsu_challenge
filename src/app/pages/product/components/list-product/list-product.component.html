@@ -1,7 +1,4 @@
-<main
-	class="container table"
-	style="margin-top: 10rem; align-items: center; display: flex; flex-direction: column"
->
+<main class="container table">
 	<form class="form-group">
 		<input
 			class="form-control"
@@ -16,7 +13,6 @@
 	</form>
 
 	<table class="rwd-table">
-		<!-- <button appConfirmDialog (confirm)="confirmDelete()">Eliminar</button> -->
 		<tbody>
 			<tr>
 				<th *ngFor="let column of displayedColumns">
@@ -68,9 +64,11 @@
 			</tr>
 		</tbody>
 	</table>
+
 	<app-pagination
+		class="paginator-responsive"
 		#pagination
-		[pageSize]="10"
+		[pageSize]="5"
 		[collectionSize]="listProduct().length"
 		[maxSize]="2"
 		[firstLastButtons]="true"

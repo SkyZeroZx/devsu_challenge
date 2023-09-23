@@ -1,10 +1,11 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'app-pagination',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, FormsModule],
 	templateUrl: './pagination.component.html',
 	styleUrls: ['./pagination.component.scss']
 })
@@ -12,6 +13,10 @@ export class PaginationComponent implements OnInit, OnChanges {
 	/** The total number of records */
 	@Input()
 	collectionSize = 0;
+
+	/** The numbers list to display in select size of page to display */
+	@Input()
+	listPageSize: number[] = [5, 10, 15, 20, 30, 40, 50];
 
 	/** The number of records to display */
 	@Input()
@@ -40,10 +45,14 @@ export class PaginationComponent implements OnInit, OnChanges {
 	totalPages: any[] = [];
 
 	ngOnInit(): void {
-		this.totalPages = new Array(Math.ceil(this.collectionSize / this.pageSize));
+		this.calculateTotalPages();
 	}
 
 	ngOnChanges() {
+		this.calculateTotalPages();
+	}
+
+	calculateTotalPages() {
 		this.totalPages = new Array(Math.ceil(this.collectionSize / this.pageSize));
 	}
 
@@ -62,5 +71,11 @@ export class PaginationComponent implements OnInit, OnChanges {
 	previous() {
 		const previousPage = this.currentPage - 1;
 		previousPage >= 1 && this.selectPageNumber(previousPage);
+	}
+
+	onChangeSize(event: Event) {
+		const value = (event.target as HTMLSelectElement).value;
+		this.pageSize = Number(value);
+		this.calculateTotalPages();
 	}
 }

@@ -136,3 +136,9 @@ body {
 a {
 	text-decoration: none;
 }
+.container {
+	margin-top: 10rem;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}

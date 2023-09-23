@@ -2,9 +2,48 @@ li {
 	display: inline;
 }
 
+.wrapper-paginator {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+
+	.options-paginator {
+		display: flex;
+		flex-direction: row;
+		margin-right: auto;
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+		.pagination-size {
+			height: 45px;
+			width: 80px;
+		}
+		.paginator-total-result {
+			align-items: center;
+			text-align: center;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+			margin-left: 2rem;
+		}
+	}
+
+	@media (max-width: 600px) {
+		flex-direction: column-reverse;
+		.options-paginator {
+			margin-left: auto;
+		}
+	}
+}
+
 .custom-paginator {
 	margin-top: 1rem;
 	margin-bottom: 2rem;
+	margin-left: auto;
+
+	@media (max-width: 600px) {
+		.button {
+			padding: 8px 16px;
+		}
+	}
 }
 
 .page-item {
