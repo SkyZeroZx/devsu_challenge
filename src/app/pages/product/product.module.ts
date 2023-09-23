@@ -3,9 +3,16 @@ import { ListProductComponent, CreateProductComponent, UpdateProductComponent } 
 import { CommonModule } from '@angular/common';
 import { ProductRoutingModule } from './product.routing';
 import { ConfirmDialogDirective } from '../../shared/directives/confirm-dialog/confirm-dialog.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [ListProductComponent, CreateProductComponent, UpdateProductComponent],
-	imports: [CommonModule, ProductRoutingModule, ConfirmDialogDirective]
+	imports: [
+		CommonModule,
+		ProductRoutingModule,
+		ConfirmDialogDirective,
+		FormsModule,
+		ReactiveFormsModule
+	]
 })
 export class ProductModule {}

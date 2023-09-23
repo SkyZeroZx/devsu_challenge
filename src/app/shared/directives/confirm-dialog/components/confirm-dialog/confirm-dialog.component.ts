@@ -27,7 +27,7 @@ export class ConfirmDialogComponent {
 	@Output()
 	confirmed = new EventEmitter<void>();
 
-	constructor(private modalHost: ElementRef<HTMLElement>) {}
+	constructor(private confirmDialogElement: ElementRef<HTMLElement>) {}
 
 	cancel() {
 		this.canceled.emit();
@@ -40,6 +40,6 @@ export class ConfirmDialogComponent {
 	}
 
 	private removeConfirmDialog() {
-		this.modalHost.nativeElement.remove();
+		this.confirmDialogElement.nativeElement.remove();
 	}
 }

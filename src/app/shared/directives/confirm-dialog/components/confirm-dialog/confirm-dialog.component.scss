@@ -19,7 +19,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 300px;
-	height: 200px;
+	height: 240px;
 }
 
 .dialog-title {
@@ -38,6 +38,23 @@
 	display: flex;
 	justify-content: center;
 
-	margin-top: 3rem;
-	margin-bottom: 3rem;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.dialog-icon {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+	img {
+		padding: 6px;
+		filter: invert(1);
+		filter: invert(100%) sepia(45%) saturate(3386%) hue-rotate(298deg) brightness(111%)
+			contrast(96%);
+	}
+	.icon-wrapper {
+		border-radius: 50%;
+		border: 2px solid #facea8;
+	}
 }

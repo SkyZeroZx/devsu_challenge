@@ -12,6 +12,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
+    "start:pwa:dev": "npm run build && http-server -p 8080 -c-1 dist/devsu-challenge",
     "format": "prettier --write \"./src/**/*.{ts,json,html,scss}\"",
     "lint-format": "npm run format &&  npm run lint --fix",
     "pre-commit": "npm run lint-format && git add .",
@@ -68,6 +69,7 @@
     "eslint": "~8.46.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.13.4",
+    "http-server": "^14.1.1",
     "husky": "^8.0.0",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",

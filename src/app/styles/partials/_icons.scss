@@ -1,0 +1,28 @@
+.icon {
+	display: block;
+	width: 22px;
+	height: 10px;
+	margin: -3px;
+	margin-right: 5px;
+}
+
+.icon-plus {
+	cursor: pointer;
+	&::before {
+		content: url('/assets/svg/plus.svg');
+	}
+}
+
+.icon-edit {
+	cursor: pointer;
+	&::before {
+		content: url('/assets/svg/edit.svg');
+	}
+}
+
+.icon-delete {
+	cursor: pointer;
+	&::before {
+		content: url('/assets/svg/delete.svg');
+	}
+}

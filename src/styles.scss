@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../src/app/styles/partials/spinner-loader';
 @import '../src/app/styles/partials/scrollbar';
+@import '../src/app/styles/partials/forms';
+@import '../src/app/styles/partials/buttons';
+@import '../src/app/styles/partials/table';
+@import '../src/app/styles/partials/icons';
 
 html,
 body,
@@ -108,6 +112,7 @@ body {
 .h-screen {
 	height: 100vh;
 }
+
 .flex {
 	display: flex;
 }
@@ -126,36 +131,6 @@ body {
 
 .mt-12 {
 	margin-top: 3rem /* 48px */;
-}
-
-.button {
-	cursor: pointer;
-	border: none;
-	padding: 10px 19px;
-	border-radius: 5px;
-	font-size: 14px;
-	letter-spacing: 1px;
-	transition: 0.3s;
-	margin: 6px;
-}
-
-.primary-button {
-	background-color: rgb(0, 102, 204);
-	color: white;
-}
-
-.primary-button:hover {
-	background-color: rgb(0, 102, 204, 0.85);
-}
-
-.secondary-button {
-	border: 2px solid #0066cc;
-	background-color: white;
-	color: #0066cc;
-}
-
-.secondary-button:hover {
-	background-color: rgb(0, 102, 204, 0.1);
 }
 
 a {

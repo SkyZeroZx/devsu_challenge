@@ -4,7 +4,8 @@ import {
 	HostListener,
 	Input,
 	Output,
-	ViewContainerRef
+	ViewContainerRef,
+	inject
 } from '@angular/core';
 
 @Directive({
@@ -32,7 +33,7 @@ export class ConfirmDialogDirective {
 
 	private existDialog = false;
 
-	constructor(private viewContainerRef: ViewContainerRef) {}
+	private readonly viewContainerRef = inject(ViewContainerRef);
 
 	@HostListener('click', ['$event'])
 	async onClick(event: MouseEvent) {
@@ -46,6 +47,8 @@ export class ConfirmDialogDirective {
 		if (this.existDialog) {
 			return;
 		}
+
+		this.existDialog = true;
 
 		const { ConfirmDialogComponent } = await import(
 			'./components/confirm-dialog/confirm-dialog.component'
@@ -64,16 +67,14 @@ export class ConfirmDialogDirective {
 
 		confirmDialogComponent.changeDetectorRef.detectChanges();
 
-		instance.confirmed.subscribe({
-			next: () => {
-				this.confirm.emit();
-			}
+		instance.confirmed.subscribe(() => {
+			this.existDialog = false;
+			this.confirm.emit();
 		});
 
-		instance.canceled.subscribe({
-			next: () => {
-				this.cancel.emit();
-			}
+		instance.canceled.subscribe(() => {
+			this.existDialog = false;
+			this.cancel.emit();
 		});
 	}
 }

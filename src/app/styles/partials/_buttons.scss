@@ -1,0 +1,29 @@
+.button {
+	display: flex;
+	cursor: pointer;
+	border: none;
+	padding: 10px 19px;
+	border-radius: 5px;
+	font-size: 14px;
+	letter-spacing: 1px;
+	transition: 0.3s;
+	margin: 6px;
+}
+
+.primary-button {
+	font-weight: 600;
+	background-color: #fae04f;
+	color: black;
+}
+
+.primary-button:hover {
+	background-color: #fae04fea;
+}
+
+.secondary-button {
+	background-color: #c9cbcf;
+	color: white;
+	&:hover {
+		background-color: #c9cbcfbb;
+	}
+}

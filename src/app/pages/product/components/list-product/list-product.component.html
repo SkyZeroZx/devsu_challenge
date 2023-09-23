@@ -1,50 +1,58 @@
 <main
 	class="container table"
-	style="margin-top: 10rem; align-items: center; justify-content: center"
+	style="margin-top: 10rem; align-items: center; display: flex; flex-direction: column"
 >
+	<form class="form-group">
+		<input
+			class="form-control"
+			type="search"
+			aria-label="search"
+			placeholder="Buscar"
+			[formControl]="filter"
+		/>
+		<button class="button primary-button" style="margin-left: auto" type="button">
+			<span class="icon icon-plus"></span>Agregar
+		</button>
+	</form>
+
 	<table class="rwd-table">
-		<input type="search" aria-label="search" placeholder="Buscar" style="margin-bottom: 1rem" />
-		<button appConfirmDialog (confirm)="confirmDelete()">Eliminar</button>
+		<!-- <button appConfirmDialog (confirm)="confirmDelete()">Eliminar</button> -->
 		<tbody>
 			<tr>
-				<th>Supplier Code</th>
-				<th>Supplier Name</th>
-				<th>Invoice Number</th>
-				<th>Invoice Date</th>
-				<th>Due Date</th>
-				<th>Net Amount</th>
+				<th *ngFor="let column of displayedColumns">
+					{{ column }}
+				</th>
 			</tr>
-			<tr>
-				<td data-th="Supplier Code">UPS5005</td>
-				<td data-th="Supplier Name">UPS</td>
-				<td data-th="Invoice Number">ASDF19218</td>
-				<td data-th="Invoice Date">06/25/2016</td>
-				<td data-th="Due Date">12/25/2016</td>
-				<td data-th="Net Amount">$8,322.12</td>
-			</tr>
-			<tr>
-				<td data-th="Supplier Code">UPS3449</td>
-				<td data-th="Supplier Name">UPS South Inc.</td>
-				<td data-th="Invoice Number">ASDF29301</td>
-				<td data-th="Invoice Date">6/24/2016</td>
-				<td data-th="Due Date">12/25/2016</td>
-				<td data-th="Net Amount">$3,255.49</td>
-			</tr>
-			<tr>
-				<td data-th="Supplier Code">BOX5599</td>
-				<td data-th="Supplier Name">BOX Pro West</td>
-				<td data-th="Invoice Number">ASDF43000</td>
-				<td data-th="Invoice Date">6/27/2016</td>
-				<td data-th="Due Date">12/25/2016</td>
-				<td data-th="Net Amount">$45,255.49</td>
-			</tr>
-			<tr>
-				<td data-th="Supplier Code">PAN9999</td>
-				<td data-th="Supplier Name">Pan Providers and Co.</td>
-				<td data-th="Invoice Number">ASDF33433</td>
-				<td data-th="Invoice Date">6/29/2016</td>
-				<td data-th="Due Date">12/25/2016</td>
-				<td data-th="Net Amount">$12,335.69</td>
+
+			<tr *ngFor="let product of listProduct()">
+				<td data-th="ID">
+					{{ product.id }}
+				</td>
+
+				<td data-th="Nombre">
+					{{ product.name }}
+				</td>
+
+				<td data-th="Descripcion">
+					{{ product.description }}
+				</td>
+
+				<td data-th="Logo">
+					<img [src]="product.logo" height="35" />
+				</td>
+
+				<td data-th="Fecha Liberación">
+					{{ product.date_release | date : 'YYYY/MM/dd' }}
+				</td>
+
+				<td data-th="Fecha Restructuración">
+					{{ product.date_revision | date : 'YYYY/MM/dd' }}
+				</td>
+
+				<td data-th="Acciones" class="table-actions">
+					<span class="icon icon-edit"></span>
+					<span class="icon icon-delete"></span>
+				</td>
 			</tr>
 		</tbody>
 	</table>

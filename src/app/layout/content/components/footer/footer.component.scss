@@ -4,17 +4,8 @@ footer {
 	min-width: 100%;
 	background-color: whitesmoke;
 	overflow: hidden;
-	position: absolute;
-	bottom: 0;
+	margin-top: 3rem;
 	text-align: center;
-	span {
-		color: #183a5c;
-		font-family: 'Quicksand';
-	}
-	@media (max-width: 600px) {
-		margin-top: 3rem;
-		position: relative;
-	}
 }
 
 .copyrights {

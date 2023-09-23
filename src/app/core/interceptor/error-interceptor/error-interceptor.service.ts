@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { DEFAULT_ERROR } from '@/core/constant';
 
 @Injectable({
@@ -16,7 +16,6 @@ import { DEFAULT_ERROR } from '@/core/constant';
 export class ErrorInterceptorService implements HttpInterceptor {
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		return next.handle(req).pipe(
-			retry(1),
 			catchError((returnedError) => {
 				let errorMessage = '';
 
