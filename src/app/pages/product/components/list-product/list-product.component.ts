@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
 	templateUrl: './list-product.component.html',
 	styleUrls: ['./list-product.component.scss']
 })
-export class ListProductComponent {}
+export class ListProductComponent {
+	confirmDelete() {
+		console.log('DELETE');
+	}
+}

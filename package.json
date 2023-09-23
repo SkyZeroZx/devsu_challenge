@@ -1,5 +1,13 @@
 {
   "name": "devsu-challenge",
+  "description": "DevSu Challenge Angular",
+  "author": {
+    "name": "Jaime Burgos Tejada"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SkyZeroZx/devsu_challenge"
+  },
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {

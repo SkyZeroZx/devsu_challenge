@@ -1,0 +1,15 @@
+<div class="dialog-overlay">
+	<div class="dialog-content">
+		<h2 class="dialog-title">{{ confirmDialogOptions.title }}</h2>
+		<p class="dialog-message">{{ confirmDialogOptions.message }}</p>
+
+		<div class="dialog-buttons">
+			<button (click)="confirm()" class="dialog-confirm-btn button primary-button">
+				{{ confirmDialogOptions.confirmButtonText }}
+			</button>
+			<button (click)="cancel()" class="dialog-cancel-btn button primary-button">
+				{{ confirmDialogOptions.cancelButtonText }}
+			</button>
+		</div>
+	</div>
+</div>
