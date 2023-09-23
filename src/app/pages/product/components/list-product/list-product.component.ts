@@ -31,10 +31,6 @@ export class ListProductComponent implements OnInit {
 		private fb: FormBuilder
 	) {}
 
-	confirmDelete() {
-		console.log('DELETE');
-	}
-
 	ngOnInit(): void {
 		this.getProducts();
 		this.onChangeFilter();
@@ -57,6 +53,14 @@ export class ListProductComponent implements OnInit {
 				'description'
 			]);
 			this.listProduct.set(dataFilter);
+		});
+	}
+
+	confirmDelete(id: string) {
+		this.productService.deleteProduct(id).subscribe({
+			next: () => {
+				this.getProducts();
+			}
 		});
 	}
 }

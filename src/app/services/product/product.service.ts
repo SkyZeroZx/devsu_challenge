@@ -25,10 +25,11 @@ export class ProductService {
 		return this.http.put<Product>(`${this.base}/bp/products`, updateProduct);
 	}
 
-	deleteProduct(id: string) {
+	deleteProduct(id: string): Observable<string> {
 		let params = new HttpParams();
 		params = params.set('id', id);
-		return this.http.delete(`${this.base}/bp/products`, { params });
+		//Add reponseType text because not return a JSON return a plain text
+		return this.http.delete(`${this.base}/bp/products`, { params, responseType: 'text' });
 	}
 
 	validateExistId(id: string): Observable<boolean> {

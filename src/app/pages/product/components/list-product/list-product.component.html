@@ -58,7 +58,12 @@
 
 				<td data-th="Acciones" class="table-actions">
 					<span class="icon icon-edit"></span>
-					<span class="icon icon-delete"></span>
+					<span
+						class="icon icon-delete"
+						appConfirmDialog
+						[message]="'¿Esta seguro de eliminar el producto ' + product.name + ' ?'"
+						(confirm)="confirmDelete(product.id)"
+					></span>
 				</td>
 			</tr>
 		</tbody>
