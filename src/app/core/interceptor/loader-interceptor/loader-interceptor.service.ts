@@ -9,6 +9,11 @@ import { LoaderService } from './loader.service';
 export class LoaderInterceptorService implements HttpInterceptor {
 	constructor(private loader: LoaderService) {}
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+		const isVerification = req.url.includes('verification');
+		if (isVerification) {
+			return next.handle(req);
+		}
+
 		this.loader.showLoader();
 		return next.handle(req).pipe(
 			finalize(() => {

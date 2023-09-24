@@ -23,7 +23,7 @@
 						Se requiere nombre
 					</small>
 					<small *ngIf="updateProductForm.get('name')?.errors?.['minlength']">
-						Se requiere minimo de 3 caracteres
+						Se requiere minimo de 5 caracteres
 					</small>
 				</div>
 			</div>
@@ -39,11 +39,23 @@
 					formControlName="description"
 					maxlength="200"
 				/>
-				<small>Error</small>
+				<div class="error" *ngIf="updateProductForm.controls['description']['invalid']">
+					<small *ngIf="updateProductForm.get('description')?.errors?.['required']">
+						Se requiere Descripción
+					</small>
+					<small *ngIf="updateProductForm.get('description')?.errors?.['minlength']">
+						Se requiere longitud minima de 10 caracteres
+					</small>
+				</div>
 			</div>
 			<div class="input-group">
 				<label for="logo">Logo</label>
 				<input type="text" placeholder="Logo" class="form-control" formControlName="logo" />
+				<div class="error" *ngIf="updateProductForm.controls['logo']['invalid']">
+					<small *ngIf="updateProductForm.get('logo')?.errors?.['required']">
+						Se requiere Logo
+					</small>
+				</div>
 			</div>
 		</div>
 
@@ -58,6 +70,11 @@
 					[min]="minDate"
 					(input)="onChangeReleaseDate($event)"
 				/>
+				<div class="error" *ngIf="updateProductForm.controls['date_release']['invalid']">
+					<small *ngIf="updateProductForm.get('date_release')?.errors?.['required']">
+						Se requiere Fecha Liberacion
+					</small>
+				</div>
 			</div>
 			<div class="input-group">
 				<label for="date_revision">Fecha Revisión</label>

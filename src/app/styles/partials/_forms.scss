@@ -15,7 +15,6 @@ textarea {
 	color: currentColor;
 	border-color: #e2e8f0;
 	background-color: white;
-	transition: all 200ms;
 
 	&::placeholder {
 		color: #a0aec0;
@@ -36,28 +35,13 @@ textarea {
 		background-color: #f0f0f0;
 	}
 
-	&.ng-invalid.ng-dirty {
+	&.ng-invalid.ng-dirty,
+	&.ng-invalid.ng-touched {
 		border-color: #f56565 !important;
 		color: #f56565;
 
-		input,
-		textarea {
-			border-color: lighten(#f56565, 22%);
-			background-color: lighten(#f56565, 28%);
-
-			&::placeholder {
-				color: #f56565;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-		}
-
 		&.focused {
-			input,
-			textarea {
-				border-color: #f56565;
-			}
+			border-color: #f74a4a;
 		}
 	}
 }
@@ -107,4 +91,12 @@ textarea {
 .error {
 	font-weight: 600;
 	color: #f56565;
+}
+
+.is-loading {
+	padding-right: 36px;
+
+	background-image: url('/assets/svg/spinner.svg');
+	background-repeat: no-repeat;
+	background-position: right 8px center;
 }

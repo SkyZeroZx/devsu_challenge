@@ -1,17 +1,19 @@
+import { TypedFormControls } from '@/core/interface/forms';
 import { Product } from '@/core/interface/product';
 import { addYearToDate, currentDate } from '@/core/utils/date';
 import { ProductService } from '@/services/product';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-update-product',
 	templateUrl: './update-product.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ['./update-product.component.scss']
 })
 export class UpdateProductComponent implements OnInit {
-	updateProductForm!: FormGroup;
+	updateProductForm!: FormGroup<TypedFormControls<Product>>;
 
 	minDate = currentDate();
 

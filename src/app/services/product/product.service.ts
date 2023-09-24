@@ -32,9 +32,9 @@ export class ProductService {
 		return this.http.delete(`${this.base}/bp/products`, { params, responseType: 'text' });
 	}
 
-	validateExistId(id: string): Observable<boolean> {
+	checkExistId(id: string): Observable<boolean> {
 		let params = new HttpParams();
 		params = params.set('id', id);
-		return this.http.get<boolean>(`${this.base}/bp/products`, { params });
+		return this.http.get<boolean>(`${this.base}/bp/products/verification`, { params });
 	}
 }

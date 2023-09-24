@@ -78,7 +78,7 @@ describe('ProductService', () => {
 		const id = product.id;
 		jest.spyOn(service['http'], 'get').mockReturnValueOnce(of(true));
 
-		service.validateExistId(id).subscribe((res) => {
+		service.checkExistId(id).subscribe((res) => {
 			expect(res).toEqual(true);
 		});
 	});
