@@ -1,9 +1,9 @@
 import { TokenInterceptorService } from './token-interceptor.service';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { of, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../../services/auth';
-import { HTTP_INTERCEPTORS, HttpClient, HttpRequest } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
 describe('TokenInterceptorService', () => {
@@ -52,6 +52,7 @@ describe('TokenInterceptorService', () => {
 	it('should not add the token to the request headers if not exist', async () => {
 		const spyAuthService = jest.spyOn(authService, 'getToken');
 		// Set Token void
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(environment.authorId as any) = null;
 
 		const http$ = httpClient.get(baseAPI);

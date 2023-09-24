@@ -14,6 +14,7 @@ describe('ConfirmDialogDirective', () => {
 	let directive: ConfirmDialogDirective;
 	let confirmBtn: DebugElement;
 	let cancelBtn: DebugElement;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	let component: TestComponent;
 
 	let fixture: ComponentFixture<TestComponent>;
