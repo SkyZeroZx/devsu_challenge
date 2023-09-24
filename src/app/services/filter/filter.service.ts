@@ -16,7 +16,7 @@ export class FilterService {
 			return this.initialData as T[];
 		}
 
-		this.dataFilter = structuredClone(this.initialData);
+		this.dataFilter = [...this.initialData];
 
 		filterText = filterText.toLowerCase().trim();
 
