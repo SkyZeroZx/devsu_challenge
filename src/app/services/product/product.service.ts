@@ -13,19 +13,19 @@ export class ProductService {
 	private readonly base = environment.API_URL;
 	constructor(private readonly http: HttpClient) {}
 
-	getProducts(): Observable<Product[]> {
+	get(): Observable<Product[]> {
 		return this.http.get<Product[]>(`${this.base}/bp/products`);
 	}
 
-	createProduct(createProduct: Product): Observable<Product> {
+	create(createProduct: Product): Observable<Product> {
 		return this.http.post<Product>(`${this.base}/bp/products`, createProduct);
 	}
 
-	updateProduct(id: string, updateProduct: UpdateProduct): Observable<Product> {
+	update(id: string, updateProduct: UpdateProduct): Observable<Product> {
 		return this.http.put<Product>(`${this.base}/bp/products`, { id, ...updateProduct });
 	}
 
-	deleteProduct(id: string): Observable<string> {
+	delete(id: string): Observable<string> {
 		let params = new HttpParams();
 		params = params.set('id', id);
 		//Add reponseType text because not return a JSON return a plain text

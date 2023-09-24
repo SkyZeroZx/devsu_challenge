@@ -35,7 +35,7 @@ describe('ProductService', () => {
 		//Mocking http return post
 		jest.spyOn(service['http'], 'post').mockReturnValueOnce(of(expectedProduct));
 
-		service.createProduct(product).subscribe((res) => {
+		service.create(product).subscribe((res) => {
 			expect(res).toEqual(expectedProduct);
 		});
 	});
@@ -44,7 +44,7 @@ describe('ProductService', () => {
 		const lisProducts: Product[] = [product, product, product];
 		jest.spyOn(service['http'], 'get').mockReturnValueOnce(of(lisProducts));
 
-		service.getProducts().subscribe((res) => {
+		service.get().subscribe((res) => {
 			expect(res).toEqual(lisProducts);
 		});
 	});
@@ -60,7 +60,7 @@ describe('ProductService', () => {
 
 		jest.spyOn(service['http'], 'put').mockReturnValueOnce(of(expectedProduct));
 
-		service.updateProduct(id, updateProductPartial).subscribe((res) => {
+		service.update(id, updateProductPartial).subscribe((res) => {
 			expect(res).toEqual(expectedProduct);
 		});
 	});
@@ -69,7 +69,7 @@ describe('ProductService', () => {
 		const id = product.id;
 		jest.spyOn(service['http'], 'delete').mockReturnValueOnce(of(RESPONSE_OK));
 
-		service.deleteProduct(id).subscribe((res) => {
+		service.delete(id).subscribe((res) => {
 			expect(res).toEqual(RESPONSE_OK);
 		});
 	});

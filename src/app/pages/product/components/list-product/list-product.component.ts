@@ -37,7 +37,7 @@ export class ListProductComponent implements OnInit {
 	}
 
 	getProducts() {
-		this.productService.getProducts().subscribe({
+		this.productService.get().subscribe({
 			next: (res) => {
 				this.filterService.setInitialData(res);
 				this.listProduct.set(res);
@@ -53,7 +53,7 @@ export class ListProductComponent implements OnInit {
 	}
 
 	confirmDelete(id: string) {
-		this.productService.deleteProduct(id).subscribe({
+		this.productService.delete(id).subscribe({
 			next: () => {
 				this.getProducts();
 			}
