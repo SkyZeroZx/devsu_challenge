@@ -1,8 +1,8 @@
-import { map } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 import { ProductService } from '@/services/product';
 import { inject } from '@angular/core';
-import { ResolveFn } from '@angular/router';
+import { ResolveFn, Router } from '@angular/router';
 import { Product } from '../../interface/product';
 
 export const productResolver: ResolveFn<Product | undefined> = (
@@ -10,8 +10,17 @@ export const productResolver: ResolveFn<Product | undefined> = (
 	_state,
 	productService = inject(ProductService)
 ) => {
+	const router = inject(Router);
 	const productId = route.params['id'] as string;
-	return productService
-		.get()
-		.pipe(map((products) => products.find((product) => product.id === productId)));
+	return productService.get().pipe(
+		map((products) => products.find((product) => product.id === productId)),
+		filter((value) => {
+			if (!value) {
+				router.navigate(['error']);
+				return false;
+			}
+
+			return true;
+		})
+	);
 };
