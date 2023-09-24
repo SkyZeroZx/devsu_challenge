@@ -70,7 +70,6 @@ export class ConfirmDialogDirective {
 
 		instance.confirmed.subscribe(() => {
 			this.existDialog = false;
-			console.log('CONFIRMED');
 			this.confirm.emit();
 		});
 
