@@ -1,8 +1,133 @@
+import { Component, DebugElement, ViewContainerRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfirmDialogDirective } from './confirm-dialog.directive';
+import { By } from '@angular/platform-browser';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+
+//Test Component for Directive
+@Component({
+	template: ` <button appConfirmDialog id="btn-dialog">Test</button>`
+})
+class TestComponent {}
 
 describe('ConfirmDialogDirective', () => {
-	it('should create an instance', () => {
-		const directive = new ConfirmDialogDirective();
-		expect(directive).toBeTruthy();
+	let directive: ConfirmDialogDirective;
+	let confirmBtn: DebugElement;
+	let cancelBtn: DebugElement;
+	let component: TestComponent;
+
+	let fixture: ComponentFixture<TestComponent>;
+	let inputEl: DebugElement;
+
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [TestComponent],
+			imports: [ConfirmDialogDirective, ConfirmDialogComponent, ConfirmDialogDirective],
+			providers: [ViewContainerRef, ConfirmDialogDirective]
+		}).compileComponents();
+
+		fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+		component = fixture.componentInstance;
+
+		inputEl = fixture.debugElement.query(By.css('button'));
+		directive = fixture.debugElement
+			.query(By.directive(ConfirmDialogDirective))
+			.injector.get(ConfirmDialogDirective) as ConfirmDialogDirective;
+	});
+	it('should create an of test component', () => {
+		expect(fixture).toBeTruthy();
+	});
+
+	it('should create a ConfirmDialogComponent when onClick() is called', async () => {
+		//spyDirective
+		const spyDirective = jest.spyOn(directive, 'onClick');
+
+		//trigger event click
+		inputEl.triggerEventHandler('click', new MouseEvent('click'));
+
+		fixture.detectChanges();
+		// await execution
+		await fixture.whenStable();
+
+		// Validate call function and exist dialog
+		expect(directive['existDialog']).toBeTruthy();
+		expect(spyDirective).toBeCalled();
+	});
+
+	it('should be exist button confirm dialog when created', async () => {
+		// Created Component Dialog
+		await directive.createComponent();
+		//get reference of confirm button
+		confirmBtn = fixture.debugElement.query(By.css('[data-test="confirm-button"'));
+
+		//validate existence
+		expect(confirmBtn).toBeTruthy();
+	});
+
+	it('should be emit event confirm when clicked in confirm button', async () => {
+		const spyEventConfirm = jest.spyOn(directive.confirm, 'emit');
+
+		await directive.createComponent();
+
+		confirmBtn = fixture.debugElement.query(By.css('[data-test="confirm-button"'));
+
+		//Validate exist and render component
+		expect(directive['existDialog']).toBeTruthy();
+
+		//Trigger event of clicked in confirm
+		confirmBtn.triggerEventHandler('click', new MouseEvent('click'));
+
+		fixture.detectChanges();
+		// await execution
+		await fixture.whenStable();
+
+		//Validate destruction of element confirm dialog
+		expect(directive['existDialog']).toBeFalsy();
+		expect(spyEventConfirm).toBeCalled();
+	});
+
+	it('should be emit event cancele when clicked in cancel button', async () => {
+		// Spy event emit cancel
+		const spyEventCancel = jest.spyOn(directive.cancel, 'emit');
+
+		//Create component dialog
+		await directive.createComponent();
+
+		// get reference of cancel button
+		cancelBtn = fixture.debugElement.query(By.css('[data-test="cancel-button"'));
+
+		//Trigger event of clicked in cancel
+		cancelBtn.triggerEventHandler('click', new MouseEvent('click'));
+
+		fixture.detectChanges();
+		// await execution
+		await fixture.whenStable();
+
+		//validate emit cancel
+		expect(spyEventCancel).toHaveBeenCalled();
+	});
+
+	it('should be not multi render when multicliked in button with directive dialog', async () => {
+		//spyDirective
+		const spyDirective = jest.spyOn(directive, 'onClick');
+		// spy Create Component method
+		const spyCreateComponent = jest.spyOn(directive, 'createComponent');
+
+		//trigger event click
+		inputEl.triggerEventHandler('click', new MouseEvent('click'));
+		inputEl.triggerEventHandler('click', new MouseEvent('click'));
+		inputEl.triggerEventHandler('click', new MouseEvent('click'));
+		inputEl.triggerEventHandler('click', new MouseEvent('click'));
+
+		fixture.detectChanges();
+		// await execution
+		await fixture.whenStable();
+
+		// Validate call function and exist dialog
+		expect(directive['existDialog']).toBeTruthy();
+		expect(spyDirective).toBeCalled();
+		//Validate only called once the method created component
+		expect(spyCreateComponent).toBeCalledTimes(1);
 	});
 });

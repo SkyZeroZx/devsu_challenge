@@ -37,17 +37,18 @@ export class ConfirmDialogDirective {
 
 	@HostListener('click', ['$event'])
 	async onClick(event: MouseEvent) {
-		event.preventDefault();
-		event.stopPropagation();
+		event?.preventDefault();
 
-		this.createComponent();
-	}
+		event?.stopPropagation();
 
-	private async createComponent() {
 		if (this.existDialog) {
 			return;
 		}
 
+		this.createComponent();
+	}
+
+	async createComponent() {
 		this.existDialog = true;
 
 		const { ConfirmDialogComponent } = await import(
@@ -69,6 +70,7 @@ export class ConfirmDialogDirective {
 
 		instance.confirmed.subscribe(() => {
 			this.existDialog = false;
+			console.log('CONFIRMED');
 			this.confirm.emit();
 		});
 

@@ -39,7 +39,7 @@ export class ConfirmDialogComponent {
 		this.removeConfirmDialog();
 	}
 
-	private removeConfirmDialog() {
+	removeConfirmDialog() {
 		this.confirmDialogElement.nativeElement.remove();
 	}
 }
