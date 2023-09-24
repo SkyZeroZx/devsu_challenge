@@ -61,9 +61,43 @@ textarea {
 	}
 }
 
-.input-label {
-	display: block;
-	margin-bottom: 0.5em;
-	color: black;
-	font-size: 16px;
+.form-buttons {
+	justify-content: center;
+	.button {
+		margin-right: 3rem;
+		margin-left: 2rem;
+	}
+}
+
+.form-control {
+	width: 300px;
+}
+
+.form-group {
+	justify-content: center;
+	border-radius: 5px;
+	flex-direction: row;
+	display: flex;
+}
+
+@media (max-width: 720px) {
+	.form-group {
+		flex-direction: column;
+		.button {
+			margin: auto;
+
+			margin-top: 2rem;
+			justify-content: center;
+		}
+	}
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	label {
+		font-weight: 700;
+		color: black;
+	}
+	margin: 2rem;
 }

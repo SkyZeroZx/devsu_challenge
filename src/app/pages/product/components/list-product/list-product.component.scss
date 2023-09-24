@@ -1,7 +1,5 @@
 .form-group {
-	display: flex;
-	flex-direction: row;
-	width: 80%;
+	width: 95%;
 	margin-bottom: 1.5rem;
 
 	.button {
@@ -9,23 +7,9 @@
 	}
 }
 
-.form-control {
-	width: 300px;
-}
-
 .paginator-responsive {
-	width: 80%;
+	width: 95%;
 	@media (max-width: 400px) {
 		width: 100%;
-	}
-}
-
-@media (max-width: 600px) {
-	.form-group {
-		flex-direction: column;
-		.button {
-			margin: auto;
-			margin-top: 2rem;
-		}
 	}
 }

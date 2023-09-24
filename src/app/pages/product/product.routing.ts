@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateProductComponent, ListProductComponent, UpdateProductComponent } from './components';
+import { productResolver } from '@/core/resolvers/product';
 
 export const productRoute: Routes = [
 	{
@@ -12,7 +13,8 @@ export const productRoute: Routes = [
 		component: CreateProductComponent
 	},
 	{
-		path: 'update',
+		path: 'update/:id',
+		resolve: { product: productResolver },
 		component: UpdateProductComponent
 	}
 ];

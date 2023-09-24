@@ -5,7 +5,7 @@
 @import '../src/app/styles/partials/buttons';
 @import '../src/app/styles/partials/table';
 @import '../src/app/styles/partials/icons';
-
+@import '../src/app/styles/partials/dropdown';
 html,
 body,
 div,
@@ -99,6 +99,7 @@ body {
 	line-height: normal;
 	font-size: 13px;
 	color: #999999;
+	background-color: whitesmoke;
 
 	@media (max-width: 602px) {
 		overflow-x: hidden;
@@ -121,6 +122,10 @@ body {
 	flex-direction: column;
 }
 
+.flex-row {
+	flex-direction: row;
+}
+
 .items-center {
 	align-items: center;
 }
@@ -136,9 +141,19 @@ body {
 a {
 	text-decoration: none;
 }
+
 .container {
-	margin-top: 10rem;
+	margin-top: 4rem;
 	align-items: center;
 	display: flex;
 	flex-direction: column;
+	background-color: white;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+}
+
+.form-title {
+	font-weight: 700;
+	font-size: x-large;
+	color: black;
 }

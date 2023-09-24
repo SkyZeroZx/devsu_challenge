@@ -5,7 +5,7 @@
 
 .rwd-table {
 	margin: auto;
-	width: 80%;
+	width: 95%;
 	min-width: 300px;
 	max-width: 100%;
 	border-collapse: collapse;
@@ -60,7 +60,6 @@
 .rwd-table {
 	color: #333;
 	border-radius: 0.4em;
-	overflow: hidden;
 }
 
 .rwd-table tr {
@@ -75,8 +74,9 @@
 .table-actions {
 	display: flex !important;
 	.icon {
-		margin-left: 1.5rem;
-		margin-right: 1.5rem;
+		margin-top: 1.2rem;
+		margin-bottom: 1.2rem;
+		margin-left: 2rem;
 	}
 }
 
