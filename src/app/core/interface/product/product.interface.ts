@@ -3,8 +3,8 @@ export interface Product {
 	name: string;
 	description: string;
 	logo: string;
-	date_release: Date | string;
-	date_revision: Date | string;
+	date_release: string;
+	date_revision: string;
 }
 
 export type UpdateProduct = Partial<Product>;

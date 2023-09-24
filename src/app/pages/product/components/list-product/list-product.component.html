@@ -45,11 +45,11 @@
 				</td>
 
 				<td data-th="Fecha Liberación">
-					{{ product.date_release | date : 'YYYY/MM/dd' }}
+					{{ product.date_release | date : 'YYYY/MM/dd' : '+0000' }}
 				</td>
 
 				<td data-th="Fecha Restructuración">
-					{{ product.date_revision | date : 'YYYY/MM/dd' }}
+					{{ product.date_revision | date : 'YYYY/MM/dd' : '+0000' }}
 				</td>
 
 				<td data-th="Acciones" class="table-actions">

@@ -1,8 +1,10 @@
 import { filter, map } from 'rxjs';
 
+import { formatProduct } from '@/core/utils/format-product';
 import { ProductService } from '@/services/product';
 import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
+
 import { Product } from '../../interface/product';
 
 export const productResolver: ResolveFn<Product | undefined> = (
@@ -21,6 +23,7 @@ export const productResolver: ResolveFn<Product | undefined> = (
 			}
 
 			return true;
-		})
+		}),
+		formatProduct()
 	);
 };

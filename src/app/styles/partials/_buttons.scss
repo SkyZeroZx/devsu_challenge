@@ -8,6 +8,10 @@
 	letter-spacing: 1px;
 	transition: 0.3s;
 	margin: 6px;
+	&[disabled] {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
 }
 
 .primary-button {
