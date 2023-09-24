@@ -12,3 +12,7 @@ export function addYearToDate(dateToAdd: string, years = 1) {
 	date.setFullYear(date.getFullYear() + years);
 	return date.toISOString().slice(0, 10);
 }
+
+export function currentDate(): string {
+	return new Date().toISOString().slice(0, 10);
+}

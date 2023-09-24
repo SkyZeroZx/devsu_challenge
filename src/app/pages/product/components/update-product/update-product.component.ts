@@ -1,5 +1,5 @@
 import { Product } from '@/core/interface/product';
-import { addYearToDate } from '@/core/utils/date';
+import { addYearToDate, currentDate } from '@/core/utils/date';
 import { ProductService } from '@/services/product';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UpdateProductComponent implements OnInit {
 	updateProductForm!: FormGroup;
 
-	minDate = new Date().toISOString().slice(0, 10);
+	minDate = currentDate();
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
