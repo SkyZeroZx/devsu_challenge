@@ -62,4 +62,26 @@ describe('LoaderInterceptorService', () => {
 		// Validate called method
 		expect(hideLoaderSpy).toHaveBeenCalled();
 	});
+
+	it('should not call show spinner when url is verification', () => {
+		// Spy Show Spinner
+		const spyShowSpinner = jest.spyOn(loaderService, 'showLoader');
+
+		// Create HTTP Request
+		const request = new HttpRequest('GET', 'verification');
+
+		// Intercept Request
+		const response = interceptor.intercept(request, {
+			handle: () =>
+				new Observable((subscriber) => {
+					subscriber.complete();
+				})
+		});
+
+		// await finalized
+		response.subscribe();
+
+		// Validate not called method
+		expect(spyShowSpinner).not.toHaveBeenCalled();
+	});
 });

@@ -22,6 +22,7 @@ export class ControlErrorsDirective implements OnInit {
 	ref!: ComponentRef<ControlErrorComponent>;
 	container: ViewContainerRef;
 
+	//Posibility of custom error in text message
 	@Input() customErrors: any = {};
 
 	// eslint-disable-next-line max-params

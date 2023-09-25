@@ -1,4 +1,5 @@
 import {
+	ApplicationRef,
 	Directive,
 	EventEmitter,
 	HostListener,
@@ -33,7 +34,7 @@ export class ConfirmDialogDirective {
 
 	private existDialog = false;
 
-	private readonly viewContainerRef = inject(ViewContainerRef);
+	private readonly applicationRef = inject(ApplicationRef);
 
 	@HostListener('click', ['$event'])
 	async onClick(event: MouseEvent) {
@@ -48,6 +49,17 @@ export class ConfirmDialogDirective {
 		this.createComponent();
 	}
 
+	getRootViewContainerRef(): ViewContainerRef {
+		const appInstance = this.applicationRef?.components[0]?.instance;
+
+		if (!appInstance?.viewContainerRef) {
+			const appName = this.applicationRef.componentTypes[0]?.name;
+			throw new Error(`Missing 'viewContainerRef' declaration in ${appName} constructor`);
+		}
+
+		return appInstance.viewContainerRef;
+	}
+
 	async createComponent() {
 		this.existDialog = true;
 
@@ -55,7 +67,8 @@ export class ConfirmDialogDirective {
 			'./components/confirm-dialog/confirm-dialog.component'
 		);
 
-		const confirmDialogComponent = this.viewContainerRef.createComponent(ConfirmDialogComponent);
+		const viewContainerRef = this.getRootViewContainerRef();
+		const confirmDialogComponent = viewContainerRef.createComponent(ConfirmDialogComponent);
 
 		const { instance } = confirmDialogComponent;
 
@@ -66,7 +79,7 @@ export class ConfirmDialogDirective {
 			cancelButtonText: this.cancelButtonText
 		};
 
-		confirmDialogComponent.changeDetectorRef.detectChanges();
+		confirmDialogComponent.changeDetectorRef?.detectChanges();
 
 		instance.confirmed.subscribe(() => {
 			this.existDialog = false;
