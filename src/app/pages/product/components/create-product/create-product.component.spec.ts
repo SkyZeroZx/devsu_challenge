@@ -4,11 +4,20 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductService } from '../../../../services/product';
+import { Product } from '../../../../core/interface/product';
 
 describe('CreateProductComponent', () => {
 	let component: CreateProductComponent;
 	let fixture: ComponentFixture<CreateProductComponent>;
 	let productService: ProductService;
+	const product: Product = {
+		name: 'Product 1',
+		description: 'Product 1 description',
+		id: '1',
+		logo: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png',
+		date_release: '2023-09-22T23:06:57.803+00:00',
+		date_revision: '2023-09-22T23:06:57.803+00:00'
+	};
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -24,5 +33,56 @@ describe('CreateProductComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('when init component call initForm', () => {
+		const spyInitForm = jest.spyOn(component, 'initCreateForm');
+
+		component.ngOnInit();
+
+		expect(spyInitForm).toHaveBeenCalled();
+	});
+
+	it('when call create call service product to create register', () => {
+		const spyProductService = jest.spyOn(productService, 'create');
+
+		//arrange form with product to test
+		component.initCreateForm();
+		// set value to form
+		component.createProductForm.patchValue(product);
+
+		// call method update for test
+		component.create();
+
+		//validate call of service with correct arguments
+		expect(spyProductService).toBeCalledWith(product);
+	});
+
+	it('should add year to form control date_revision when change date_release', async () => {
+		const mockInitialDate = '2023-09-24';
+		const mockDateWithOneYear = '2024-09-24';
+		const eventMock = {
+			target: {
+				value: mockInitialDate
+			} as HTMLInputElement
+		} as unknown as Event;
+
+		component.initCreateForm();
+
+		component.onChangeReleaseDate(eventMock);
+		//Await to detect changes
+		fixture.detectChanges();
+		await fixture.whenStable();
+
+		const date_revision = component.createProductForm.get('date_revision')?.value;
+		expect(date_revision).toEqual(mockDateWithOneYear);
+	});
+
+	it('when call reset should be reset the form', () => {
+		const spyResetForm = jest.spyOn(component.createProductForm, 'reset');
+
+		component.reset();
+
+		expect(spyResetForm).toHaveBeenCalled();
 	});
 });
