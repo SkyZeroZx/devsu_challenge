@@ -24,14 +24,6 @@
 					formControlName="name"
 					maxlength="100"
 				/>
-				<div class="error" *ngIf="createProductForm.controls['name']['invalid']">
-					<small *ngIf="createProductForm.get('name')?.errors?.['required']">
-						Se requiere nombre
-					</small>
-					<small *ngIf="createProductForm.get('name')?.errors?.['minlength']">
-						Se requiere minimo de 3 caracteres
-					</small>
-				</div>
 			</div>
 		</div>
 
@@ -45,7 +37,6 @@
 					formControlName="description"
 					maxlength="200"
 				/>
-				<small>Error</small>
 			</div>
 			<div class="input-group">
 				<label for="logo">Logo</label>

@@ -12,7 +12,7 @@ export class ProductValidador {
 				switchMap(() =>
 					productService
 						.checkExistId(control.value)
-						.pipe(map((result) => (result ? { productAlreadyExist: true } : null)))
+						.pipe(map((result) => (result ? { alreadyExist: true } : null)))
 				)
 			);
 		};

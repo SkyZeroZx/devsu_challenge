@@ -90,8 +90,8 @@ describe('CreateProductComponent', () => {
 		expect(date_revision).toEqual(mockDateWithOneYear);
 	});
 
-	it('when call reset should be reset the form', () => {
-		const spyResetForm = jest.spyOn(component.createProductForm, 'reset');
+	it('when call reset should be initCreateForm the form', () => {
+		const spyResetForm = jest.spyOn(component, 'initCreateForm');
 
 		component.reset();
 

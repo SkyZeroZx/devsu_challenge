@@ -2,9 +2,9 @@ import { Product } from '@/core/interface/product';
 import { filterSearch } from '@/core/utils/filter-search';
 import { FilterService } from '@/services/filter';
 import { ProductService } from '@/services/product';
-import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, signal } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ToastService } from '../../../../shared/ui';
+import { PaginationComponent, ToastService } from '@/shared/ui';
 
 @Component({
 	selector: 'app-list-product',
@@ -16,15 +16,17 @@ export class ListProductComponent implements OnInit {
 	filter = this.fb.control<string>('', { nonNullable: true });
 	listProduct = signal<Product[]>([]);
 	displayedColumns: string[] = [
+		'Logo',
 		'ID',
 		'Nombre',
 		'Descripción',
-		'Logo',
 		'Fecha Liberación',
 		'Fecha Restructuración',
 		'Acciones'
 	];
 	filterColumns: string[] = ['id', 'name', 'description'];
+	@ViewChild('pagination')
+	pagination!: PaginationComponent;
 
 	constructor(
 		private productService: ProductService,
@@ -51,6 +53,7 @@ export class ListProductComponent implements OnInit {
 		this.filter.valueChanges.pipe(filterSearch()).subscribe((filter) => {
 			const dataFilter = this.filterService.filterData<Product>(filter, this.filterColumns);
 			this.listProduct.set(dataFilter);
+			this.pagination.currentPage = 1;
 		});
 	}
 

@@ -28,6 +28,10 @@
 							: pagination.currentPage * pagination.pageSize
 				"
 			>
+				<td data-th="Logo">
+					<img [src]="product.logo" height="35" width="65" alt="product logo" />
+				</td>
+
 				<td data-th="ID">
 					{{ product.id }}
 				</td>
@@ -38,10 +42,6 @@
 
 				<td data-th="Descripcion">
 					{{ product.description }}
-				</td>
-
-				<td data-th="Logo">
-					<img [src]="product.logo" height="35" />
 				</td>
 
 				<td data-th="Fecha Liberación">
