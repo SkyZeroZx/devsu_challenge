@@ -22,7 +22,7 @@ export class FilterService {
 
 		return this.dataFilter.filter((item) => {
 			return filterProperties.some((prop) => {
-				const value = ((item as any)[prop] as string)?.toString().toLowerCase();
+				const value = item[prop]?.toString().toLowerCase();
 				return value && value.includes(filterText);
 			});
 		});

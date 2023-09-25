@@ -51,7 +51,7 @@ describe('ConfirmDialogComponent', () => {
 
 		expect(spyConfirm).toHaveBeenCalled();
 		// Validate remove confirm dialog call
-		expect(spyRemoveConfirmDialog);
+		expect(spyRemoveConfirmDialog).toHaveBeenCalled();
 	});
 
 	it('when call cancel should emit canceled and remove component', async () => {
@@ -72,7 +72,7 @@ describe('ConfirmDialogComponent', () => {
 		expect(spyCancel).toHaveBeenCalled();
 
 		// Validate remove confirm dialog call
-		expect(spyRemoveConfirmDialog);
+		expect(spyRemoveConfirmDialog).toHaveBeenCalled();
 	});
 
 	it('should valid value of message , title and text buttons in dialogConfirm', async () => {
