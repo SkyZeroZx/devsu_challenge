@@ -8,11 +8,14 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../../../core/interface/product';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { ToastModule, ToastService } from '../../../../shared/ui';
 
 describe('UpdateProductComponent', () => {
 	let component: UpdateProductComponent;
 	let productService: ProductService;
 	let fixture: ComponentFixture<UpdateProductComponent>;
+	let toastService: ToastService;
+
 	const product: Product = {
 		name: 'Product 1',
 		description: 'Product 1 description',
@@ -21,14 +24,23 @@ describe('UpdateProductComponent', () => {
 		date_release: '2023-09-22T23:06:57.803+00:00',
 		date_revision: '2023-09-22T23:06:57.803+00:00'
 	};
+
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [UpdateProductComponent],
-			imports: [RouterTestingModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule],
+			imports: [
+				RouterTestingModule,
+				HttpClientTestingModule,
+				FormsModule,
+				ReactiveFormsModule,
+				ToastModule
+			],
 			providers: [
 				ProductService,
 				FormBuilder,
+				ToastService,
 				{
+					//Mocking by default activetedRoute
 					provide: ActivatedRoute,
 					useValue: {
 						data: of({
@@ -40,6 +52,7 @@ describe('UpdateProductComponent', () => {
 		}).compileComponents();
 
 		productService = TestBed.inject(ProductService);
+		toastService = TestBed.inject(ToastService);
 		fixture = TestBed.createComponent(UpdateProductComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
@@ -86,5 +99,16 @@ describe('UpdateProductComponent', () => {
 
 		//validate call of service with correct arguments
 		expect(spyProductService).toBeCalledWith(product.id, product);
+	});
+
+	it('should be call toast when sucessfull update product', () => {
+		//spy and mock create of product service
+		const spyCreateProduct = jest.spyOn(productService, 'update').mockReturnValueOnce(of(product));
+		const spyToastSucess = jest.spyOn(toastService, 'success');
+
+		component.update();
+
+		expect(spyCreateProduct).toHaveBeenCalled();
+		expect(spyToastSucess).toHaveBeenCalled();
 	});
 });

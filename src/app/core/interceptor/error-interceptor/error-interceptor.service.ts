@@ -1,3 +1,8 @@
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+import { DEFAULT_ERROR } from '@/core/constant';
+import { ToastService } from '@/shared/ui';
 import {
 	HttpErrorResponse,
 	HttpEvent,
@@ -6,14 +11,13 @@ import {
 	HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { DEFAULT_ERROR } from '@/core/constant';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ErrorInterceptorService implements HttpInterceptor {
+	constructor(private readonly toastService: ToastService) {}
+
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		return next.handle(req).pipe(
 			catchError((returnedError) => {
@@ -25,7 +29,10 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
 				console.error(errorMessage ? errorMessage : returnedError);
 
-				alert(`${returnedError.error.message || returnedError.error || DEFAULT_ERROR}`);
+				this.toastService.error({
+					title: 'Error',
+					message: `${returnedError.error.message || returnedError.error || DEFAULT_ERROR}`
+				});
 
 				if (errorMessage) {
 					return throwError(() => new Error(errorMessage));

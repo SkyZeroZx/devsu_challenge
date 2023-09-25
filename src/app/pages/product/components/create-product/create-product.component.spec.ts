@@ -5,11 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductService } from '../../../../services/product';
 import { Product } from '../../../../core/interface/product';
+import { ToastModule, ToastService } from '../../../../shared/ui';
+import { of } from 'rxjs';
 
 describe('CreateProductComponent', () => {
 	let component: CreateProductComponent;
 	let fixture: ComponentFixture<CreateProductComponent>;
 	let productService: ProductService;
+	let toastService: ToastService;
+
 	const product: Product = {
 		name: 'Product 1',
 		description: 'Product 1 description',
@@ -22,10 +26,18 @@ describe('CreateProductComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [CreateProductComponent],
-			imports: [RouterTestingModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule],
-			providers: [ProductService]
+			imports: [
+				RouterTestingModule,
+				HttpClientTestingModule,
+				FormsModule,
+				ReactiveFormsModule,
+				ToastModule
+			],
+			providers: [ProductService, ToastService]
 		}).compileComponents();
+
 		productService = TestBed.inject(ProductService);
+		toastService = TestBed.inject(ToastService);
 		fixture = TestBed.createComponent(CreateProductComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
@@ -84,5 +96,16 @@ describe('CreateProductComponent', () => {
 		component.reset();
 
 		expect(spyResetForm).toHaveBeenCalled();
+	});
+
+	it('should be call toast when sucessfull create product', () => {
+		//spy and mock create of product service
+		const spyCreateProduct = jest.spyOn(productService, 'create').mockReturnValueOnce(of(product));
+		const spyToastSucess = jest.spyOn(toastService, 'success');
+
+		component.create();
+
+		expect(spyCreateProduct).toHaveBeenCalled();
+		expect(spyToastSucess).toHaveBeenCalled();
 	});
 });

@@ -2,6 +2,7 @@ import { TypedFormControls } from '@/core/interface/forms';
 import { Product } from '@/core/interface/product';
 import { addYearToDate, currentDate } from '@/core/utils/date';
 import { ProductService } from '@/services/product';
+import { ToastService } from '@/shared/ui';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +18,11 @@ export class CreateProductComponent implements OnInit {
 
 	minDate = currentDate();
 
-	constructor(private fb: FormBuilder, private productService: ProductService) {}
+	constructor(
+		private fb: FormBuilder,
+		private productService: ProductService,
+		private toastService: ToastService
+	) {}
 
 	ngOnInit() {
 		this.initCreateForm();
@@ -82,7 +87,10 @@ export class CreateProductComponent implements OnInit {
 		const createProduct = this.createProductForm.getRawValue();
 		this.productService.create(createProduct).subscribe({
 			next: () => {
-				alert('Creado Exitosamente');
+				this.toastService.success({
+					title: 'Exito',
+					message: 'Se creo nuevo producto exitosamente'
+				});
 			}
 		});
 	}

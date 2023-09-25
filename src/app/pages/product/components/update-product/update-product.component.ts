@@ -2,6 +2,7 @@ import { TypedFormControls } from '@/core/interface/forms';
 import { Product } from '@/core/interface/product';
 import { addYearToDate, currentDate } from '@/core/utils/date';
 import { ProductService } from '@/services/product';
+import { ToastService } from '@/shared/ui';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +21,8 @@ export class UpdateProductComponent implements OnInit {
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private fb: FormBuilder,
-		private productService: ProductService
+		private productService: ProductService,
+		private toastService: ToastService
 	) {}
 
 	ngOnInit() {
@@ -97,7 +99,10 @@ export class UpdateProductComponent implements OnInit {
 		const product = this.updateProductForm.getRawValue();
 		this.productService.update(product.id, product).subscribe({
 			next: () => {
-				alert('Se actualizo exitosamente el registro');
+				this.toastService.success({
+					title: 'Exito',
+					message: 'Se actualizo exitosamente el registro'
+				});
 			}
 		});
 	}
