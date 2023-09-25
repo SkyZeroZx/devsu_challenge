@@ -1,0 +1,25 @@
+<div
+	class="toast_wrapper"
+	(click)="this.toastService.hide()"
+	[@openClose]="toastService.data && toastService.data.show ? 'open' : 'closed'"
+>
+	<ng-container *ngIf="toastService.data">
+		<div
+			class="inner_wrapper"
+			[class.toast-success]="toastService.data.type === 0"
+			[class.toast-warn]="toastService.data.type === 1"
+			[class.toast-error]="toastService.data.type === 2"
+		>
+			<div class="flex">
+				<div class="toast_content">
+					<h5 class="toast_title">
+						{{ toastService.data.title }}
+					</h5>
+					<div class="toast_text">
+						{{ toastService.data.message }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-container>
+</div>

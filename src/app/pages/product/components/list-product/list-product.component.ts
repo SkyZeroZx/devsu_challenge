@@ -4,6 +4,7 @@ import { FilterService } from '@/services/filter';
 import { ProductService } from '@/services/product';
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ToastService } from '../../../../shared/ui';
 
 @Component({
 	selector: 'app-list-product',
@@ -28,7 +29,8 @@ export class ListProductComponent implements OnInit {
 	constructor(
 		private productService: ProductService,
 		private filterService: FilterService,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private toastService: ToastService
 	) {}
 
 	ngOnInit(): void {
@@ -56,6 +58,10 @@ export class ListProductComponent implements OnInit {
 		this.productService.delete(id).subscribe({
 			next: () => {
 				this.getProducts();
+				this.toastService.success({
+					title: 'Exito',
+					message: 'Se elimino el producto de manera exitosa'
+				});
 			}
 		});
 	}
