@@ -31,7 +31,11 @@
 <img src="https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg" alt="Build With VSCode" />
 </p>
 
-Se desarrollo el reto tecnico con todas funcionalidades y extras indicados
+Se desarrollo el reto tecnico con todas funcionalidades y extras indicados.
+
+Se tuvo en cuenta calidad de codigo y reusabilidad se crearon components de UI con posibilidad reutilizarlo como librerias , siendo esto posible gracias NX.
+
+Se tuvo en consideración el performance haciendo uso de ChangeDetection Strategy y uso de OnPush , adicionalmente se uso signals.
 
 Puede ver una demo en el enlace : https://devsu-challenge.skyzerozx.com/#/product
 
@@ -47,6 +51,7 @@ Puede ver una demo en el enlace : https://devsu-challenge.skyzerozx.com/#/produc
 - Husky :Git Hooks para ejecutar lint y realiza pre commits
 - GitHub Actions : Implementacion de CI y ejecución de unit test en pipeline
 - PWA : Se agrego funcionalidad de PWA adicionalmente dado la consideración de un diseño responsive y facilmente adaptable a mobile
+- Cypress : Se crearon pruebas E2E para validar el funcionamiento en un entorno más cercano al real
 
 # Instalación
 
@@ -109,6 +114,26 @@ La carpeta con la cobertura del codigo se creara en la raiz del proyecto
 El cual se encuentra en la siguiente ruta coverage/devsu-challenge/lcov-report/index.html el cual se puede visualizar el reporte visual
 
 ![Coverage Unit Test](/docs/test/unit-test-coverage.jpg)
+
+## E2E Testing
+
+Los test fueron construido con cypress con typescript , para ejecutarlo en modo desarrollo con la GUI de cypress ejecutar
+
+Configurar el fichero `cypress.config.ts` con la variable de entorno necesarias
+
+```
+ npm run e2e:watch
+```
+
+Para ejecutar en modo headless las pruebas e2e ejecutar el comando
+
+```
+ npm run e2e
+```
+
+![E2E Testing](/docs/test/e2e-testing.jpg)
+
+Nota : Por falta de tiempo solo se realizaron algunos test e2e , quedando pendiente su integración al pipeline de github actions asi como un coverage propio
 
 # Analisis de Codigo
 

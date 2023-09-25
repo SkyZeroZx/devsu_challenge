@@ -64,7 +64,4 @@ describe('Funcionality List Products', () => {
 		cy.get('[data-test="confirm-button"]').should('be.visible');
 		cy.get('[data-test="cancel-button"]').should('be.visible');
 	});
-
-
-	
 });
