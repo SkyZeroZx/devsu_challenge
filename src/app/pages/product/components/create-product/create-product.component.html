@@ -1,5 +1,5 @@
 <main class="container">
-	<h1 class="form-title">Formulario de Registro</h1>
+	<h1 class="form-title" data-test="create-product-title">Formulario de Registro</h1>
 	<hr class="w-full" />
 	<form [formGroup]="createProductForm">
 		<div class="form-group">
@@ -71,9 +71,14 @@
 		</div>
 
 		<div class="flex flex-row form-buttons">
-			<button class="button secondary-button" type="button" routerLink="/">Atras</button>
-			<button class="button secondary-button" type="button" (click)="reset()">Reiniciar</button>
+			<button class="button secondary-button" type="button" routerLink="/" data-test="btn-back">
+				Atras
+			</button>
+			<button class="button secondary-button" type="button" (click)="reset()" data-test="btn-reset">
+				Reiniciar
+			</button>
 			<button
+				data-test="btn-create-product"
 				class="button primary-button"
 				type="button"
 				[disabled]="createProductForm.invalid"

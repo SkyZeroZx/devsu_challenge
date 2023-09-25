@@ -12,6 +12,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
+    "e2e": "nx e2e e2e",
+    "e2e:watch": "nx e2e e2e --watch",
     "start:pwa:dev": "npm run build && http-server -p 8080 -c-1 dist/devsu-challenge",
     "format": "prettier --write \"./src/**/*.{ts,json,html,scss}\"",
     "lint-format": "npm run format &&  npm run lint --fix",
@@ -67,6 +69,7 @@
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "cypress": "^13.0.0",
+    "cypress-real-events": "^1.10.3",
     "eslint": "~8.46.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.13.4",

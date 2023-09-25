@@ -1,13 +1,19 @@
 <main class="container table">
 	<form class="form-group">
 		<input
+			data-test="input-search-product"
 			class="form-control"
 			type="search"
 			aria-label="search"
 			placeholder="Buscar"
 			[formControl]="filter"
 		/>
-		<button class="button primary-button button-add" type="button" routerLink="create">
+		<button
+			class="button primary-button button-add"
+			type="button"
+			routerLink="create"
+			data-test="btn-add"
+		>
 			<span class="icon icon-plus"></span>Agregar
 		</button>
 	</form>
@@ -15,7 +21,7 @@
 	<table class="rwd-table">
 		<tbody>
 			<tr>
-				<th *ngFor="let column of displayedColumns">
+				<th *ngFor="let column of displayedColumns" data-test="table-column">
 					{{ column }}
 				</th>
 			</tr>
@@ -54,10 +60,20 @@
 
 				<td data-th="Acciones" class="table-actions">
 					<div class="dropdown">
-						<button type="button" class="dropdown-button" aria-label="dropdown-options">
-							<div class="dropdown-content">
-								<span class="icon icon-edit" [routerLink]="['update', product.id]"></span>
+						<button
+							data-test="btn-dropdown"
+							type="button"
+							class="dropdown-button"
+							aria-label="dropdown-options"
+						>
+							<div class="dropdown-content" data-test="dropdown-content">
 								<span
+									data-test="btn-edit"
+									class="icon icon-edit"
+									[routerLink]="['update', product.id]"
+								></span>
+								<span
+									data-test="btn-delete"
 									class="icon icon-delete"
 									appConfirmDialog
 									title="Eliminar Registro"

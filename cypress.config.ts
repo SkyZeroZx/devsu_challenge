@@ -1,8 +1,11 @@
-import { defineConfig } from 'cypress';
-import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
+import { defineConfig } from "cypress";
 
 export default defineConfig({
-	e2e: nxE2EPreset(__dirname),
+	e2e: {
+		setupNodeEvents(on, config) {
+			// implement node event listeners here
+		}
+	},
 	env: {
 		baseUrl:
 			'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros',
