@@ -14,3 +14,15 @@ footer {
 	font-family: 'Quicksand';
 	font-weight: 500;
 }
+
+.credits {
+	color: black;
+	margin-top: 1rem;
+	font-weight: 500;
+	display: flex;
+	justify-content: center;
+	li {
+		display: block;
+		margin-top: 1rem;
+	}
+}

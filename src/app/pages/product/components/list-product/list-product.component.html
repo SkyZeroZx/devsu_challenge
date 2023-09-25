@@ -54,17 +54,18 @@
 
 				<td data-th="Acciones" class="table-actions">
 					<div class="dropdown">
-						<button type="button" class="dropdown-button">Opciones</button>
-						<div class="dropdown-content">
-							<span class="icon icon-edit" [routerLink]="['update', product.id]"></span>
-							<span
-								class="icon icon-delete"
-								appConfirmDialog
-								title="Eliminar Registro"
-								[message]="'¿Esta seguro de eliminar el producto ' + product.name + ' ?'"
-								(confirm)="confirmDelete(product.id)"
-							></span>
-						</div>
+						<button type="button" class="dropdown-button" aria-label="dropdown-options">
+							<div class="dropdown-content">
+								<span class="icon icon-edit" [routerLink]="['update', product.id]"></span>
+								<span
+									class="icon icon-delete"
+									appConfirmDialog
+									title="Eliminar Registro"
+									[message]="'¿Esta seguro de eliminar el producto ' + product.name + ' ?'"
+									(confirm)="confirmDelete(product.id)"
+								></span>
+							</div>
+						</button>
 					</div>
 				</td>
 			</tr>

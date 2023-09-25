@@ -18,11 +18,11 @@ export class ListProductComponent implements OnInit {
 	displayedColumns: string[] = [
 		'Logo',
 		'ID',
-		'Nombre',
+		'Nombre del producto',
 		'Descripción',
 		'Fecha Liberación',
 		'Fecha Restructuración',
-		'Acciones'
+		''
 	];
 	filterColumns: string[] = ['id', 'name', 'description'];
 	@ViewChild('pagination')

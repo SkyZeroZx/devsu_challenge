@@ -5,6 +5,11 @@
 	.button {
 		margin-left: auto;
 	}
+	@media (max-width: 720px) {
+		input {
+			width: 100%;
+		}
+	}
 }
 
 .paginator-responsive {

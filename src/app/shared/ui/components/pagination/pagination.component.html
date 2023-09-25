@@ -1,6 +1,11 @@
 <div class="wrapper-paginator">
 	<div class="options-paginator">
-		<select class="pagination-size" (change)="onChangeSize($event)" id="select-pagination-size">
+		<select
+			class="pagination-size"
+			(change)="onChangeSize($event)"
+			id="select-pagination-size"
+			aria-label="select pagination"
+		>
 			<ng-container *ngFor="let size of listPageSize; index as i">
 				<option [selected]="i === 0" [value]="size">
 					{{ size }}

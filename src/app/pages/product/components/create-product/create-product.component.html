@@ -13,6 +13,9 @@
 					maxlength="10"
 					[class.is-loading]="createProductForm.get('id')?.pending"
 				/>
+				<div class="error" *ngIf="createProductForm.get('id')?.hasError('alreadyExist')">
+					<small> Ya se encuentra registrado el ID ingresado </small>
+				</div>
 			</div>
 
 			<div class="input-group">
