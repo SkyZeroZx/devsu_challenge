@@ -3,12 +3,12 @@ import { of } from 'rxjs';
 import { Product } from '@/core/interface/product';
 import { FilterService } from '@/services/filter';
 import { ProductService } from '@/services/product';
-import { PaginationComponent } from '@/shared/components/pagination/pagination.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ListProductComponent } from './list-product.component';
+import { PaginationComponent } from '../../../../shared/ui';
 
 describe('ListProductComponent', () => {
 	let component: ListProductComponent;

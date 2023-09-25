@@ -1,6 +1,6 @@
 import { swRegistrationOptions } from '@/core/config/service-worker';
 import { interceptorsProviders } from '@/core/interceptor';
-import { SpinnerComponent } from '@/shared/components/spinner';
+import { SpinnerComponent } from '@/shared/ui';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
