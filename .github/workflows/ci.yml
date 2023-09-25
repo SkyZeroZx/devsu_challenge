@@ -50,7 +50,7 @@ jobs:
           path: ./*
           key: ${{ github.sha }}
       - name: Run All Unit Tests
-        run: npm run unit-test
+        run: npm run test
       - uses: actions/cache@v3
         id: build-unit-test
         with:
