@@ -39,6 +39,20 @@ Se tuvo en consideración el performance haciendo uso de ChangeDetection Strateg
 
 Puede ver una demo en el enlace : https://devsu-challenge.skyzerozx.com/#/product
 
+# Preview
+
+## Desktop
+
+![Preview Desktop List Page](/docs/demo/desktop-list-option.jpg)
+![Preview Desktop Create Page](/docs/demo/create-product-page.JPG)
+![Preview Desktop Edit](/docs/demo/desktop-edit.jpg)
+
+## Mobile
+
+![Preview Mobile List Page](/docs/demo/mobile-list-product.jpg)
+
+![Preview Mobile Create Page](/docs/demo/mobile-product-create.jpg);
+
 # Stack
 
 - Angular 16
@@ -178,6 +192,14 @@ Adicionalmente se generan artifacts con los reportes y evidencias de nuestro CI 
 ![CI 1](/docs/ci/ci-1.jpg)
 
 ![CI 1](/docs/ci/ci-2.jpg)
+
+## Compilación
+
+Para obtener la build de produción de proyecto puede ejecutar el siguiente comando
+
+```
+npm run build:production
+```
 
 ## Versionado 📌
 
