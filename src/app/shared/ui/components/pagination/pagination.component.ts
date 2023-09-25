@@ -76,6 +76,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 	onChangeSize(event: Event) {
 		const value = (event.target as HTMLSelectElement).value;
 		this.pageSize = Number(value);
+		this.currentPage = 1;
 		this.calculateTotalPages();
 	}
 }

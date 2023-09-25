@@ -51,6 +51,7 @@ describe('PaginationComponent', () => {
 		component.onChangeSize({ target: { value: 10 } } as any);
 
 		expect(component.pageSize).toBe(10);
+		expect(component.currentPage).toBe(1);
 	});
 
 	it('should select the previous page number', () => {
