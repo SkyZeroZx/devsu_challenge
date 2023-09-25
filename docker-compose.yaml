@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  devsu-challenge:
+    build: 
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: devsu-challenge-app
+    hostname: nginx
+    container_name: devsu-challenge-app
+    restart: always 
+    ports:
+      - '80:80'
