@@ -91,7 +91,7 @@ describe('CreateProductComponent', () => {
 	});
 
 	it('when call reset should be initCreateForm the form', () => {
-		const spyResetForm = jest.spyOn(component, 'initCreateForm');
+		const spyResetForm = jest.spyOn(component.createProductForm, 'reset');
 
 		component.reset();
 

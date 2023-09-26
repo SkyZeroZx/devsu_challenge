@@ -96,7 +96,6 @@ export class CreateProductComponent implements OnInit {
 	}
 
 	reset() {
-		// use init because reset method show all error of directive
-		this.initCreateForm();
+		this.createProductForm.reset();
 	}
 }
